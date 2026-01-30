@@ -75,13 +75,16 @@
                 const title = escapeHtml(h.title);
                 const preview = escapeHtml((h.hadeeth ?? "").slice(0, 180)) + ((h.hadeeth ?? "").length > 180 ? "..." : "");
                 return `
-          <button class="list-group-item list-group-item-action hadith-item" data-id="${h.id}">
-            <div class="d-flex w-100 justify-content-between">
-              <h6 class="mb-1 text-success fw-bold">${title}</h6>
-              <span class="badge text-bg-success">#${h.id}</span>
+          <button class="list-group-item list-group-item-action hadith-item fade-in" 
+                  data-id="${h.id}" 
+                  role="listitem"
+                  aria-label="Hadith ${h.id}: ${title}">
+            <div class="d-flex w-100 justify-content-between align-items-start">
+              <h6 class="mb-2 fw-bold hadith-title">${title}</h6>
+              <span class="hadith-badge">#${h.id}</span>
             </div>
-            <p class="mb-1 text-secondary">${preview}</p>
-            <small class="text-muted">Clique pour ouvrir</small>
+            <p class="mb-2 hadith-preview">${preview}</p>
+            <small class="hadith-cta"><i class="bi bi-arrow-right-circle"></i> Cliquer pour voir le détail complet</small>
           </button>
         `;
             }).join("");
@@ -106,16 +109,34 @@
             $modalTitle.textContent = d?.title ?? "Détail Hadith";
             $modalBody.innerHTML = `
         <div class="mb-3">
-          <p class="mb-2">${escapeHtml(d?.hadeeth)}</p>
-          <hr/>
-          <p class="mb-1"><b>Attribution :</b> ${escapeHtml(d?.attribution)}</p>
-          <p class="mb-1"><b>Grade :</b> ${escapeHtml(d?.grade)}</p>
-          <hr/>
-          <p class="text-end" dir="rtl" lang="ar" style="font-size: 1.15rem;">
-            ${escapeHtml(d?.hadeeth_ar)}
-          </p>
-          <p dir="rtl" lang="ar"><b>Explication :</b> ${escapeHtml(d?.explanation_ar)}</p>
-          <p dir="rtl" lang="ar"><b>Grade :</b> ${escapeHtml(d?.grade_ar)}</p>
+          <div class="hadith-modal-text">
+            <p style="margin: 0;">${escapeHtml(d?.hadeeth)}</p>
+          </div>
+          
+          <div class="hadith-modal-meta">
+            <div class="hadith-modal-meta-item attribution">
+              <strong class="hadith-modal-meta-label">Attribution</strong>
+              <p class="hadith-modal-meta-value">${escapeHtml(d?.attribution)}</p>
+            </div>
+            <div class="hadith-modal-meta-item grade">
+              <strong class="hadith-modal-meta-label">Grade</strong>
+              <p class="hadith-modal-meta-value">${escapeHtml(d?.grade)}</p>
+            </div>
+          </div>
+          
+          <hr style="border-color: var(--stroke); margin: 24px 0;"/>
+          
+          <div class="hadith-modal-arabic">
+            <p class="hadith-modal-arabic-text">
+              ${escapeHtml(d?.hadeeth_ar)}
+            </p>
+            <div class="hadith-modal-arabic-section">
+              <p><strong class="hadith-modal-arabic-label">التفسير:</strong> ${escapeHtml(d?.explanation_ar)}</p>
+            </div>
+            <div class="hadith-modal-arabic-section">
+              <p><strong class="hadith-modal-arabic-label">الدرجة:</strong> ${escapeHtml(d?.grade_ar)}</p>
+            </div>
+          </div>
         </div>
       `;
 

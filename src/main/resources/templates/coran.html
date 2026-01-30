@@ -35,31 +35,40 @@
 <main class="container page-wrap">
 
     <section class="hero mb-4">
-        <div class="d-flex flex-wrap align-items-center justify-content-between gap-3">
+        <div class="d-flex flex-wrap align-items-center justify-content-between gap-3 mb-4">
             <div>
                 <h1 class="h-title">Coran</h1>
-                <p id="surahMeta" class="h-sub mb-0">Sélectionne une sourate. Lecture premium, lisibilité maximale.</p>
+                <p id="surahMeta" class="h-sub mb-0">Sélectionnez une sourate pour commencer. Lecture premium, lisibilité maximale.</p>
             </div>
 
             <div class="d-flex gap-2 flex-wrap">
-                <button id="btnPlayAr" class="btn-brand"><i class="bi bi-headphones"></i> Arabe</button>
-                <button id="btnPlayFr" class="btn-premium"><i class="bi bi-volume-up"></i> Français</button>
-                <button id="btnPlayArFr" class="btn-premium"><i class="bi bi-shuffle"></i> Ar/Fr</button>
-                <button id="btnStop" class="btn-danger-soft"><i class="bi bi-stop-fill"></i> Stop</button>
+                <button id="btnPlayAr" class="btn-brand" title="Lecture audio en arabe"><i class="bi bi-headphones"></i> Arabe</button>
+                <button id="btnPlayFr" class="btn-premium" title="Lecture audio en français"><i class="bi bi-volume-up"></i> Français</button>
+                <button id="btnPlayArFr" class="btn-premium" title="Lecture alternée arabe/français"><i class="bi bi-shuffle"></i> Ar/Fr</button>
+                <button id="btnStop" class="btn-danger-soft" title="Arrêter la lecture"><i class="bi bi-stop-fill"></i> Stop</button>
             </div>
         </div>
 
-        <div class="row g-3 mt-3">
+        <div class="row g-3">
             <div class="col-lg-7">
-                <label class="form-label fw-bold mb-2">Sourate</label>
-                <select id="surahSelect" class="form-select select-premium"></select>
+                <label for="surahSelect" class="form-label fw-bold mb-2"><i class="bi bi-book"></i> Sourate</label>
+                <select id="surahSelect" class="form-select select-premium" aria-label="Sélection de sourate"></select>
             </div>
             <div class="col-lg-5">
-                <label class="form-label fw-bold mb-2">Affichage</label>
+                <label class="form-label fw-bold mb-2"><i class="bi bi-eye"></i> Affichage</label>
                 <div class="d-flex gap-2 flex-wrap">
-                    <label class="toggle-chip"><input type="checkbox" id="optArabic" checked> Arabe</label>
-                    <label class="toggle-chip"><input type="checkbox" id="optFrench" checked> Français</label>
-                    <label class="toggle-chip"><input type="checkbox" id="optTranslit"> Translittération</label>
+                    <label class="toggle-chip">
+                        <input type="checkbox" id="optArabic" checked aria-label="Afficher le texte arabe"> 
+                        <span>Arabe</span>
+                    </label>
+                    <label class="toggle-chip">
+                        <input type="checkbox" id="optFrench" checked aria-label="Afficher la traduction française"> 
+                        <span>Français</span>
+                    </label>
+                    <label class="toggle-chip">
+                        <input type="checkbox" id="optTranslit" aria-label="Afficher la translittération"> 
+                        <span>Translittération</span>
+                    </label>
                 </div>
             </div>
         </div>
