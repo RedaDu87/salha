@@ -1,0 +1,391 @@
+/* =========================
+   GAFAM-level design system
+   ========================= */
+
+:root{
+    --bg: #0b1020;
+    --bg2: #0f1630;
+    --card: rgba(255,255,255,.06);
+    --card2: rgba(255,255,255,.08);
+    --stroke: rgba(255,255,255,.10);
+    --text: rgba(255,255,255,.92);
+    --muted: rgba(255,255,255,.70);
+    --muted2: rgba(255,255,255,.55);
+
+    --brand: #48e59a;
+    --brand2:#23b7ff;
+    --warn:#ffcb6b;
+    --danger:#ff5c7a;
+
+    --shadow: 0 18px 50px rgba(0,0,0,.40);
+    --shadow2: 0 10px 28px rgba(0,0,0,.30);
+
+    --r-xl: 22px;
+    --r-lg: 18px;
+    --r-md: 14px;
+    --r-sm: 12px;
+
+    --blur: blur(16px);
+    --ring: 0 0 0 4px rgba(72,229,154,.18);
+    --ring2: 0 0 0 4px rgba(35,183,255,.18);
+
+    --font: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+}
+
+/* Light mode overrides */
+[data-theme="light"]{
+    --bg: #f6f8ff;
+    --bg2:#eef2ff;
+    --card: rgba(255,255,255,.85);
+    --card2: rgba(255,255,255,.95);
+    --stroke: rgba(10,16,32,.10);
+    --text: rgba(10,16,32,.92);
+    --muted: rgba(10,16,32,.72);
+    --muted2: rgba(10,16,32,.55);
+
+    --shadow: 0 18px 50px rgba(17,24,39,.12);
+    --shadow2: 0 10px 28px rgba(17,24,39,.10);
+}
+
+/* Base */
+html, body { height:100%; }
+body{
+    font-family: var(--font);
+    background:
+            radial-gradient(1200px 900px at 20% -10%, rgba(35,183,255,.20), transparent 60%),
+            radial-gradient(1000px 800px at 110% 10%, rgba(72,229,154,.20), transparent 55%),
+            linear-gradient(180deg, var(--bg), var(--bg2));
+    color: var(--text);
+    overflow-x:hidden;
+}
+
+a{ text-decoration:none; }
+
+/* Container spacing */
+.page-wrap{ padding: 26px 0 70px; }
+
+/* Top navbar (glass) */
+.nav-glass{
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    background: linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.04));
+    border-bottom: 1px solid var(--stroke);
+    backdrop-filter: var(--blur);
+    -webkit-backdrop-filter: var(--blur);
+}
+[data-theme="light"] .nav-glass{
+    background: linear-gradient(180deg, rgba(255,255,255,.80), rgba(255,255,255,.65));
+}
+
+.brand-badge{
+    display:flex; align-items:center; gap:10px;
+    font-weight: 800; letter-spacing:-.3px;
+}
+.brand-dot{
+    width: 12px; height:12px; border-radius:99px;
+    background: linear-gradient(135deg, var(--brand), var(--brand2));
+    box-shadow: 0 0 0 4px rgba(72,229,154,.16);
+}
+
+/* Buttons */
+.btn-premium{
+    border: 1px solid var(--stroke);
+    background: rgba(255,255,255,.06);
+    color: var(--text);
+    border-radius: 14px;
+    padding: 10px 14px;
+    box-shadow: none;
+    transition: transform .12s ease, background .12s ease, border-color .12s ease;
+}
+.btn-premium:hover{
+    transform: translateY(-1px);
+    background: rgba(255,255,255,.10);
+    border-color: rgba(255,255,255,.18);
+}
+[data-theme="light"] .btn-premium{
+    background: rgba(255,255,255,.75);
+}
+
+.btn-brand{
+    border: 0;
+    color: #071018;
+    font-weight: 700;
+    background: linear-gradient(135deg, var(--brand), var(--brand2));
+    border-radius: 16px;
+    padding: 12px 16px;
+    box-shadow: 0 16px 40px rgba(35,183,255,.18);
+    transition: transform .12s ease, filter .12s ease;
+}
+.btn-brand:hover{ transform: translateY(-1px); filter: brightness(1.02); }
+.btn-danger-soft{
+    border: 1px solid rgba(255,92,122,.35);
+    background: rgba(255,92,122,.12);
+    color: var(--text);
+    border-radius: 14px;
+    padding: 10px 14px;
+}
+
+/* Hero */
+.hero{
+    position: relative;
+    border-radius: var(--r-xl);
+    padding: 36px 28px;
+    border: 1px solid var(--stroke);
+    background: linear-gradient(180deg, var(--card), rgba(255,255,255,.03));
+    box-shadow: var(--shadow);
+    overflow:visible;
+}
+.hero::before{
+    content:"";
+    position:absolute; inset:-2px;
+    background: radial-gradient(800px 240px at 30% 10%, rgba(72,229,154,.26), transparent 60%),
+    radial-gradient(700px 260px at 90% 0%, rgba(35,183,255,.26), transparent 55%);
+    filter: blur(18px);
+    opacity:.85;
+    pointer-events:none;
+}
+.hero > *{ position:relative; z-index:1; }
+
+.h-title{
+    font-size: clamp(1.65rem, 2.1vw, 2.2rem);
+    font-weight: 900;
+    letter-spacing: -0.7px;
+    margin:0;
+}
+.h-sub{
+    margin-top: 10px;
+    color: var(--muted);
+    font-size: 1.05rem;
+    line-height: 1.6;
+}
+
+.kpi-row{
+    display:flex; gap:10px; flex-wrap:wrap;
+    margin-top: 18px;
+}
+.kpi{
+    border: 1px solid var(--stroke);
+    background: rgba(255,255,255,.05);
+    border-radius: 16px;
+    padding: 10px 12px;
+    color: var(--muted);
+    display:flex; gap:10px; align-items:center;
+}
+.kpi b{ color: var(--text); }
+
+/* Cards */
+.card-glass{
+    border: 1px solid var(--stroke);
+    background: linear-gradient(180deg, var(--card2), rgba(255,255,255,.04));
+    border-radius: var(--r-xl);
+    box-shadow: var(--shadow2);
+}
+.card-pad{ padding: 18px; }
+
+.section-title{
+    display:flex; align-items:center; justify-content:space-between;
+    margin: 22px 0 10px;
+}
+.section-title h3{
+    margin:0;
+    font-weight: 850;
+    letter-spacing: -0.5px;
+    font-size: 1.15rem;
+}
+.section-title .hint{
+    color: var(--muted2);
+    font-size: .95rem;
+}
+
+/* Controls */
+.select-premium{
+    border-radius: 16px !important;
+    padding: 14px 14px !important;
+    border: 1px solid var(--stroke) !important;
+    background: rgba(255,255,255,.06) !important;
+    color: var(--text) !important;
+    box-shadow: none !important;
+}
+.select-premium:focus{ box-shadow: var(--ring); }
+
+.toggle-chip{
+    border: 1px solid var(--stroke);
+    background: rgba(255,255,255,.06);
+    border-radius: 999px;
+    padding: 8px 12px;
+    display:flex; gap:10px; align-items:center;
+    color: var(--muted);
+}
+.toggle-chip input{ accent-color: var(--brand); }
+
+/* Ayah cards */
+.ayah-card{
+    border: 1px solid var(--stroke);
+    background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.03));
+    border-radius: var(--r-xl);
+    box-shadow: var(--shadow2);
+    overflow:hidden;
+}
+.ayah-head{
+    display:flex; align-items:center; justify-content:space-between;
+    padding: 12px 14px;
+    border-bottom: 1px solid var(--stroke);
+    background: rgba(255,255,255,.04);
+}
+.ayah-body{ padding: 14px 16px; }
+
+.badge-pill{
+    display:inline-flex; align-items:center; gap:8px;
+    border-radius: 999px;
+    padding: 7px 10px;
+    border: 1px solid var(--stroke);
+    background: rgba(255,255,255,.05);
+    color: var(--muted);
+    font-weight: 700;
+}
+.badge-pill .dot{
+    width:8px; height:8px; border-radius:99px;
+    background: var(--brand);
+    box-shadow: 0 0 0 4px rgba(72,229,154,.15);
+}
+
+.arabic{
+    font-family: "Noto Naskh Arabic","Amiri", serif;
+    font-size: 2.0rem;
+    line-height: 2.35;
+}
+
+.fr{
+    margin-top: 8px;
+    font-size: 1.05rem;
+    line-height: 1.6;
+}
+.translit{
+    margin-top: 8px;
+    color: var(--muted);
+    font-size: 1.0rem;
+    line-height: 1.6;
+    font-style: italic;
+}
+
+.play-mini{
+    border: 1px solid rgba(72,229,154,.35);
+    background: rgba(72,229,154,.12);
+    color: var(--text);
+    border-radius: 12px;
+    padding: 8px 10px;
+}
+.play-mini:hover{ filter: brightness(1.05); transform: translateY(-1px); transition:.12s ease; }
+
+/* Loading */
+.loading-line{
+    height: 4px;
+    width: 100%;
+    border-radius: 999px;
+    overflow:hidden;
+    background: rgba(255,255,255,.08);
+    border: 1px solid var(--stroke);
+}
+.loading-line::after{
+    content:"";
+    display:block;
+    height:100%;
+    width:35%;
+    background: linear-gradient(90deg, transparent, rgba(72,229,154,.9), rgba(35,183,255,.9), transparent);
+    transform: translateX(-100%);
+    animation: slide 1.2s infinite ease-in-out;
+}
+@keyframes slide{
+    0%{ transform: translateX(-100%); }
+    100%{ transform: translateX(300%); }
+}
+
+/* Back to top */
+.back-to-top{
+    position: fixed;
+    right: 18px;
+    bottom: 18px;
+    width: 54px;
+    height: 54px;
+    border-radius: 999px;
+    border: 1px solid var(--stroke);
+    background: rgba(255,255,255,.08);
+    color: var(--text);
+    backdrop-filter: var(--blur);
+    box-shadow: var(--shadow2);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    transition: transform .12s ease, background .12s ease;
+}
+.back-to-top:hover{ transform: translateY(-1px); background: rgba(255,255,255,.12); }
+
+/* Footer */
+.footer{
+    margin-top: 36px;
+    color: var(--muted2);
+    font-size: .95rem;
+    text-align:center;
+}
+/* =========================
+   Tom Select - NO TRANSPARENCY
+   ========================= */
+
+/* Dropdown totalement opaque */
+.ts-dropdown{
+    background: #0f1630 !important;      /* dark opaque */
+    border: 1px solid var(--stroke) !important;
+    box-shadow: var(--shadow2) !important;
+    border-radius: 16px !important;
+    overflow: hidden;
+    opacity: 1 !important;
+    z-index: 99999 !important;
+}
+
+/* Options */
+.ts-dropdown .option{
+    background: #0f1630 !important;
+    color: var(--text) !important;
+}
+.ts-dropdown .option:hover,
+.ts-dropdown .active{
+    background: #14204a !important;      /* hover opaque */
+}
+
+/* Search input inside dropdown */
+.ts-dropdown .ts-dropdown-input{
+    background: #0f1630 !important;
+    color: var(--text) !important;
+    border-bottom: 1px solid var(--stroke) !important;
+}
+.ts-dropdown .ts-dropdown-input::placeholder{
+    color: var(--muted2) !important;
+}
+
+/* Control (la boîte) opaque aussi si tu veux */
+.ts-control{
+    background: #0f1630 !important;
+}
+
+/* Light mode: dropdown opaque clair */
+[data-theme="light"] .ts-dropdown{
+    background: #ffffff !important;
+}
+[data-theme="light"] .ts-dropdown .option{
+    background: #ffffff !important;
+    color: rgba(10,16,32,.92) !important;
+}
+[data-theme="light"] .ts-dropdown .option:hover,
+[data-theme="light"] .ts-dropdown .active{
+    background: #f2f5ff !important;
+}
+[data-theme="light"] .ts-dropdown .ts-dropdown-input{
+    background: #ffffff !important;
+    color: rgba(10,16,32,.92) !important;
+}
+[data-theme="light"] .ts-control{
+    background: #ffffff !important;
+}
+
+
