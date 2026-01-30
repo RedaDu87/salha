@@ -533,7 +533,7 @@ a{ text-decoration:none; }
     animation: slideInUp .5s ease;
 }
 
-/* Stagger animation for list items */
+/* Stagger animation for list items - extended to 20 items */
 .ayah-card:nth-child(1) { animation-delay: 0.05s; }
 .ayah-card:nth-child(2) { animation-delay: 0.1s; }
 .ayah-card:nth-child(3) { animation-delay: 0.15s; }
@@ -542,10 +542,26 @@ a{ text-decoration:none; }
 .ayah-card:nth-child(6) { animation-delay: 0.3s; }
 .ayah-card:nth-child(7) { animation-delay: 0.35s; }
 .ayah-card:nth-child(8) { animation-delay: 0.4s; }
+.ayah-card:nth-child(9) { animation-delay: 0.45s; }
+.ayah-card:nth-child(10) { animation-delay: 0.5s; }
+.ayah-card:nth-child(n+11) { animation-delay: 0.5s; } /* Cap at 0.5s for remaining items */
 
 /* Smooth transitions for all interactive elements */
 button, a, .toggle-chip, .select-premium {
     transition: all .2s cubic-bezier(.4, 0, .2, 1);
+}
+
+/* Reduce motion for accessibility */
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+    
+    .ayah-card, .hadith-item, .hero, .card-glass {
+        animation: none !important;
+    }
 }
 
 /* Focus states for accessibility */
@@ -663,6 +679,33 @@ a:focus-visible,
     letter-spacing: -0.2px;
 }
 
+.hadith-title {
+    color: var(--brand);
+}
+
+.hadith-badge {
+    background: linear-gradient(135deg, var(--brand), var(--brand2));
+    color: #071018;
+    font-weight: 700;
+    padding: 6px 12px;
+    border-radius: 12px;
+    font-size: 0.85rem;
+}
+
+[data-theme="light"] .hadith-badge {
+    color: #071018;
+}
+
+.hadith-preview {
+    color: var(--text);
+    line-height: 1.65;
+}
+
+.hadith-cta {
+    color: var(--muted2);
+    font-weight: 500;
+}
+
 /* Modal enhancements */
 .modal-content {
     background: linear-gradient(180deg, var(--card), rgba(255,255,255,.04)) !important;
@@ -686,6 +729,92 @@ a:focus-visible,
     border-top: 1px solid var(--stroke) !important;
     background: rgba(255,255,255,.02);
     padding: 16px 24px !important;
+}
+
+/* Hadith modal content styles */
+.hadith-modal-text {
+    background: rgba(255,255,255,.04);
+    border-radius: 16px;
+    padding: 20px;
+    margin-bottom: 20px;
+    border: 1px solid var(--stroke);
+    font-size: 1.08rem;
+    line-height: 1.75;
+    color: var(--text);
+}
+
+.hadith-modal-meta {
+    display: grid;
+    gap: 12px;
+    margin-bottom: 20px;
+}
+
+.hadith-modal-meta-item {
+    padding: 14px 18px;
+    border-radius: 12px;
+}
+
+.hadith-modal-meta-item.attribution {
+    background: rgba(72,229,154,.08);
+    border-left: 3px solid var(--brand);
+}
+
+.hadith-modal-meta-item.grade {
+    background: rgba(35,183,255,.08);
+    border-left: 3px solid var(--brand2);
+}
+
+.hadith-modal-meta-label {
+    color: var(--brand);
+    font-size: .9rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    font-weight: 700;
+    display: block;
+    margin-bottom: 6px;
+}
+
+.hadith-modal-meta-item.grade .hadith-modal-meta-label {
+    color: var(--brand2);
+}
+
+.hadith-modal-meta-value {
+    margin: 0;
+    color: var(--text);
+}
+
+.hadith-modal-arabic {
+    background: rgba(255,255,255,.02);
+    border-radius: 16px;
+    padding: 20px;
+    border: 1px solid var(--stroke);
+}
+
+.hadith-modal-arabic-text {
+    font-family: 'Noto Naskh Arabic', 'Amiri', serif;
+    font-size: 1.4rem;
+    line-height: 2.2;
+    color: var(--text);
+    margin-bottom: 16px;
+    font-weight: 600;
+    text-align: right;
+    direction: rtl;
+}
+
+.hadith-modal-arabic-section {
+    border-top: 1px solid var(--stroke);
+    padding-top: 16px;
+    margin-top: 16px;
+    font-size: 1.05rem;
+    line-height: 1.8;
+    color: var(--muted);
+    text-align: right;
+    direction: rtl;
+}
+
+.hadith-modal-arabic-label {
+    color: var(--text);
+    font-weight: 700;
 }
 
 /* =========================
