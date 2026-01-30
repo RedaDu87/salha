@@ -54,17 +54,17 @@
         const showTr = $optTr.checked;
 
         $ayah.innerHTML = ayas.map(a => `
-  <article class="ayah-card" id="aya-${a.n}">
+  <article class="ayah-card fade-in" id="aya-${a.n}">
     <div class="ayah-head">
       <span class="badge-pill"><span class="dot"></span> Verset ${a.n}</span>
       <button class="play-mini" data-play="${a.n}">
-        <i class="bi bi-play-fill"></i> Ar
+        <i class="bi bi-play-fill"></i> Écouter
       </button>
     </div>
     <div class="ayah-body">
       ${showAr ? `<div class="arabic text-end" dir="rtl" lang="ar">${escapeHtml(a.arText)}</div>` : ""}
-      ${showTr ? `<div class="translit"><b>Translit :</b> ${escapeHtml(a.trText)}</div>` : ""}
-      ${showFr ? `<div class="fr"><b>FR :</b> ${escapeHtml(a.frText)}</div>` : ""}
+      ${showTr ? `<div class="translit"><b>Translittération :</b> ${escapeHtml(a.trText)}</div>` : ""}
+      ${showFr ? `<div class="fr"><b>Traduction :</b> ${escapeHtml(a.frText)}</div>` : ""}
     </div>
   </article>
 `).join("");

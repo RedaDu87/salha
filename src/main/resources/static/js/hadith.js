@@ -75,13 +75,13 @@
                 const title = escapeHtml(h.title);
                 const preview = escapeHtml((h.hadeeth ?? "").slice(0, 180)) + ((h.hadeeth ?? "").length > 180 ? "..." : "");
                 return `
-          <button class="list-group-item list-group-item-action hadith-item" data-id="${h.id}">
-            <div class="d-flex w-100 justify-content-between">
-              <h6 class="mb-1 text-success fw-bold">${title}</h6>
-              <span class="badge text-bg-success">#${h.id}</span>
+          <button class="list-group-item list-group-item-action hadith-item fade-in" data-id="${h.id}">
+            <div class="d-flex w-100 justify-content-between align-items-start">
+              <h6 class="mb-2 fw-bold" style="color: var(--brand);">${title}</h6>
+              <span class="badge" style="background: linear-gradient(135deg, var(--brand), var(--brand2)); color: #071018; font-weight: 700; padding: 6px 12px; border-radius: 12px;">#${h.id}</span>
             </div>
-            <p class="mb-1 text-secondary">${preview}</p>
-            <small class="text-muted">Clique pour ouvrir</small>
+            <p class="mb-2" style="color: var(--text); line-height: 1.65;">${preview}</p>
+            <small style="color: var(--muted2); font-weight: 500;"><i class="bi bi-arrow-right-circle"></i> Cliquer pour voir le détail complet</small>
           </button>
         `;
             }).join("");
@@ -106,16 +106,34 @@
             $modalTitle.textContent = d?.title ?? "Détail Hadith";
             $modalBody.innerHTML = `
         <div class="mb-3">
-          <p class="mb-2">${escapeHtml(d?.hadeeth)}</p>
-          <hr/>
-          <p class="mb-1"><b>Attribution :</b> ${escapeHtml(d?.attribution)}</p>
-          <p class="mb-1"><b>Grade :</b> ${escapeHtml(d?.grade)}</p>
-          <hr/>
-          <p class="text-end" dir="rtl" lang="ar" style="font-size: 1.15rem;">
-            ${escapeHtml(d?.hadeeth_ar)}
-          </p>
-          <p dir="rtl" lang="ar"><b>Explication :</b> ${escapeHtml(d?.explanation_ar)}</p>
-          <p dir="rtl" lang="ar"><b>Grade :</b> ${escapeHtml(d?.grade_ar)}</p>
+          <div style="background: rgba(255,255,255,.04); border-radius: 16px; padding: 20px; margin-bottom: 20px; border: 1px solid var(--stroke);">
+            <p style="font-size: 1.08rem; line-height: 1.75; color: var(--text); margin: 0;">${escapeHtml(d?.hadeeth)}</p>
+          </div>
+          
+          <div style="display: grid; gap: 12px; margin-bottom: 20px;">
+            <div style="background: rgba(72,229,154,.08); border-left: 3px solid var(--brand); padding: 14px 18px; border-radius: 12px;">
+              <strong style="color: var(--brand); font-size: .9rem; text-transform: uppercase; letter-spacing: 0.5px;">Attribution</strong>
+              <p style="margin: 6px 0 0; color: var(--text);">${escapeHtml(d?.attribution)}</p>
+            </div>
+            <div style="background: rgba(35,183,255,.08); border-left: 3px solid var(--brand2); padding: 14px 18px; border-radius: 12px;">
+              <strong style="color: var(--brand2); font-size: .9rem; text-transform: uppercase; letter-spacing: 0.5px;">Grade</strong>
+              <p style="margin: 6px 0 0; color: var(--text);">${escapeHtml(d?.grade)}</p>
+            </div>
+          </div>
+          
+          <hr style="border-color: var(--stroke); margin: 24px 0;"/>
+          
+          <div style="background: rgba(255,255,255,.02); border-radius: 16px; padding: 20px; border: 1px solid var(--stroke);">
+            <p class="text-end" dir="rtl" lang="ar" style="font-family: 'Noto Naskh Arabic', 'Amiri', serif; font-size: 1.4rem; line-height: 2.2; color: var(--text); margin-bottom: 16px; font-weight: 600;">
+              ${escapeHtml(d?.hadeeth_ar)}
+            </p>
+            <div style="border-top: 1px solid var(--stroke); padding-top: 16px; margin-top: 16px;">
+              <p dir="rtl" lang="ar" style="font-size: 1.05rem; line-height: 1.8; color: var(--muted);"><strong style="color: var(--text);">التفسير:</strong> ${escapeHtml(d?.explanation_ar)}</p>
+            </div>
+            <div style="border-top: 1px solid var(--stroke); padding-top: 16px; margin-top: 16px;">
+              <p dir="rtl" lang="ar" style="font-size: 1.05rem; line-height: 1.8; color: var(--muted);"><strong style="color: var(--text);">الدرجة:</strong> ${escapeHtml(d?.grade_ar)}</p>
+            </div>
+          </div>
         </div>
       `;
 
