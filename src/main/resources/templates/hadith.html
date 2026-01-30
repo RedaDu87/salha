@@ -35,24 +35,24 @@
 <main class="container page-wrap">
 
     <section class="hero mb-4">
-        <div class="d-flex flex-wrap align-items-center justify-content-between gap-3">
+        <div class="d-flex flex-wrap align-items-center justify-content-between gap-3 mb-4">
             <div>
                 <h1 class="h-title">Hadith</h1>
-                <p class="h-sub mb-0">Catégories → liste → détail. Lisibilité, hiérarchie, zéro friction.</p>
+                <p class="h-sub mb-0">Navigation par catégories → liste → détail. Lisibilité optimale, hiérarchie claire, zéro friction.</p>
             </div>
         </div>
 
-        <div class="row g-3 mt-3">
+        <div class="row g-3">
             <div class="col-lg-8">
-                <label class="form-label fw-bold mb-2">Catégorie</label>
-                <select id="hadithCategory" class="form-select select-premium"></select>
+                <label for="hadithCategory" class="form-label fw-bold mb-2"><i class="bi bi-folder"></i> Catégorie</label>
+                <select id="hadithCategory" class="form-select select-premium" aria-label="Sélection de catégorie de hadith"></select>
             </div>
             <div class="col-lg-4">
-                <label class="form-label fw-bold mb-2">Statut</label>
+                <label class="form-label fw-bold mb-2"><i class="bi bi-info-circle"></i> Statut</label>
                 <div id="hadithLoading" class="d-none">
                     <div class="loading-line"></div>
                 </div>
-                <div class="hint mt-2">Ouverture rapide, rendu premium.</div>
+                <div class="hint mt-2">Chargement rapide, rendu premium.</div>
             </div>
         </div>
     </section>
@@ -60,30 +60,32 @@
     <section class="card-glass">
         <div class="card-pad">
             <div class="section-title">
-                <h3>Résultats</h3>
-                <span class="hint">Clique sur un hadith pour le détail</span>
+                <h3><i class="bi bi-list-ul"></i> Résultats</h3>
+                <span class="hint">Cliquez sur un hadith pour voir les détails complets</span>
             </div>
 
-            <div id="hadithList" class="d-grid gap-2"></div>
+            <div id="hadithList" class="d-grid gap-2" role="list"></div>
         </div>
     </section>
 
-    <div class="footer">Hadith — navigation fluide & rendu premium.</div>
+    <footer class="footer">
+        <p class="mb-0">✨ Hadith authentiques avec navigation fluide & présentation premium</p>
+    </footer>
 </main>
 
 <!-- Modal -->
-<div class="modal fade" id="hadithModal" tabindex="-1" aria-hidden="true">
-    <div class="modal-dialog modal-lg modal-dialog-scrollable">
+<div class="modal fade" id="hadithModal" tabindex="-1" aria-labelledby="hadithModalTitle" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-scrollable modal-dialog-centered">
         <div class="modal-content" style="border-radius: 18px;">
             <div class="modal-header">
-                <h5 id="hadithModalTitle" class="modal-title fw-bold">Détail</h5>
+                <h5 id="hadithModalTitle" class="modal-title fw-bold"><i class="bi bi-file-text"></i> Détail du Hadith</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fermer"></button>
             </div>
             <div class="modal-body">
                 <div id="hadithModalBody"></div>
             </div>
             <div class="modal-footer">
-                <button class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
+                <button class="btn btn-secondary" data-bs-dismiss="modal"><i class="bi bi-x-circle"></i> Fermer</button>
             </div>
         </div>
     </div>
