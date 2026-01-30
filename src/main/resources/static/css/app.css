@@ -1,6 +1,6 @@
 /* =========================
    Oriental Arab-Muslim Design System
-   #1 Market Leader & World Wonder Theme
+   Inspired by Islamic Palace Architecture
    ========================= */
 
 :root{
@@ -190,6 +190,8 @@ a{ text-decoration:none; }
     cursor: pointer;
     position: relative;
     overflow: hidden;
+}
+.btn-brand:hover{
     animation: gradient-shift 3s ease infinite;
 }
 @keyframes gradient-shift {
@@ -517,7 +519,6 @@ a{ text-decoration:none; }
     background: linear-gradient(135deg, var(--gold), var(--brand2));
     box-shadow: 0 0 0 4px rgba(218,165,32,.25), 0 0 15px rgba(218,165,32,.5);
     animation: pulse-gold 2.5s infinite;
-}
 }
 
 .arabic{
