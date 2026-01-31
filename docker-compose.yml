@@ -12,7 +12,7 @@ services:
         condition: any
       labels:
         - "traefik.enable=true"
-        - "traefik.http.routers.salha.rule=Host(`coran-hadith.ch`)"
+        - "traefik.http.routers.salha.rule=Host(`coran-hadith.fr`)"
         - "traefik.http.routers.salha.entrypoints=websecure"
         - "traefik.http.services.salha.loadbalancer.server.port=8080"
 networks:
