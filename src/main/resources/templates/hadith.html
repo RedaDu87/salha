@@ -3,7 +3,26 @@
 <head>
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width,initial-scale=1"/>
-    <title>Hadiths Authentiques — Al-Nour Palace</title>
+    <meta name="description" content="Consultez les Hadiths authentiques du Prophète Mohammed en français. Collection complète de Hadiths organisée par catégories avec Al-Nour Palace. Sagesse prophétique accessible et bien présentée."/>
+    <meta name="keywords" content="Hadiths authentiques, Hadith français, Hadiths Prophète Mohammed, Sunna, tradition prophétique, Hadiths en ligne, sagesse islamique"/>
+    <meta name="author" content="Al-Nour Palace"/>
+    <meta name="robots" content="index, follow"/>
+    <link rel="canonical" th:href="@{/hadith}"/>
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website"/>
+    <meta property="og:url" content="https://salha.fr/hadith"/>
+    <meta property="og:title" content="Hadiths Authentiques du Prophète Mohammed — Al-Nour Palace"/>
+    <meta property="og:description" content="Consultez les Hadiths authentiques en français. Collection complète organisée par catégories pour explorer la sagesse prophétique."/>
+    <meta property="og:locale" content="fr_FR"/>
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image"/>
+    <meta property="twitter:url" content="https://salha.fr/hadith"/>
+    <meta property="twitter:title" content="Hadiths Authentiques du Prophète Mohammed — Al-Nour Palace"/>
+    <meta property="twitter:description" content="Consultez les Hadiths authentiques en français organisés par catégories."/>
+    
+    <title>Hadiths Authentiques du Prophète Mohammed en Français | Al-Nour Palace</title>
 
     <link href="https://cdn.jsdelivr.net/npm/tom-select@2.3.1/dist/css/tom-select.css" rel="stylesheet">
 
@@ -15,20 +34,42 @@
 
     <!-- Arabic premium fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Noto+Naskh+Arabic:wght@400;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Structured Data / JSON-LD -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebPage",
+      "name": "Hadiths Authentiques",
+      "url": "https://salha.fr/hadith",
+      "description": "Collection complète de Hadiths authentiques du Prophète Mohammed organisée par catégories",
+      "inLanguage": "fr-FR",
+      "isPartOf": {
+        "@type": "WebSite",
+        "name": "Al-Nour Palace",
+        "url": "https://salha.fr/"
+      },
+      "about": {
+        "@type": "Thing",
+        "name": "Hadiths",
+        "description": "Les Hadiths sont les paroles et actions du Prophète Mohammed"
+      }
+    }
+    </script>
 
 </head>
 <body>
 
 <header class="nav-glass">
     <div class="container py-3 d-flex align-items-center justify-content-between">
-        <a th:href="@{/}" class="brand-badge">
+        <a th:href="@{/}" class="brand-badge" aria-label="Al-Nour Palace - Accueil">
             <span class="brand-dot"></span><span>☪ Al-Nour Palace</span>
         </a>
 
-        <div class="d-flex gap-2 align-items-center">
-            <a th:href="@{/coran}" class="btn-premium"><i class="bi bi-book"></i> Coran</a>
-            <button id="btnTheme" class="btn-premium" type="button"><i id="themeIcon" class="bi bi-moon-stars-fill"></i></button>
-        </div>
+        <nav class="d-flex gap-2 align-items-center" aria-label="Navigation principale">
+            <a th:href="@{/coran}" class="btn-premium" aria-label="Lire le Saint Coran"><i class="bi bi-book"></i> Coran</a>
+            <button id="btnTheme" class="btn-premium" type="button" aria-label="Changer le thème"><i id="themeIcon" class="bi bi-moon-stars-fill"></i></button>
+        </nav>
     </div>
 </header>
 
