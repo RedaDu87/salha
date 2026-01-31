@@ -3,7 +3,26 @@
 <head>
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width,initial-scale=1"/>
-    <title>Saint Coran — Al-Nour Palace</title>
+    <meta name="description" content="Lisez le Saint Coran en ligne en français avec Al-Nour Palace. Texte arabe complet, traduction française de qualité, translittération et audio. Interface premium pour une lecture spirituelle optimale."/>
+    <meta name="keywords" content="Coran en ligne, lire Coran français, Coran arabe, traduction Coran, audio Coran, sourates, versets, Saint Coran gratuit, Coran complet"/>
+    <meta name="author" content="Al-Nour Palace"/>
+    <meta name="robots" content="index, follow"/>
+    <link rel="canonical" th:href="@{/coran}"/>
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website"/>
+    <meta property="og:url" content="https://salha.fr/coran"/>
+    <meta property="og:title" content="Lire le Saint Coran en Français — Al-Nour Palace"/>
+    <meta property="og:description" content="Lisez le Saint Coran en ligne avec texte arabe, traduction française et audio. Interface premium pour une expérience de lecture spirituelle exceptionnelle."/>
+    <meta property="og:locale" content="fr_FR"/>
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image"/>
+    <meta property="twitter:url" content="https://salha.fr/coran"/>
+    <meta property="twitter:title" content="Lire le Saint Coran en Français — Al-Nour Palace"/>
+    <meta property="twitter:description" content="Lisez le Saint Coran en ligne avec texte arabe, traduction française et audio."/>
+    
+    <title>Lire le Saint Coran en Français avec Traduction et Audio | Al-Nour Palace</title>
 
     <link href="https://cdn.jsdelivr.net/npm/tom-select@2.3.1/dist/css/tom-select.css" rel="stylesheet">
 
@@ -15,20 +34,42 @@
 
     <!-- Arabic premium fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Noto+Naskh+Arabic:wght@400;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Structured Data / JSON-LD -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebPage",
+      "name": "Saint Coran en Ligne",
+      "url": "https://salha.fr/coran",
+      "description": "Lisez le Saint Coran en ligne avec texte arabe, traduction française et translittération",
+      "inLanguage": "fr-FR",
+      "isPartOf": {
+        "@type": "WebSite",
+        "name": "Al-Nour Palace",
+        "url": "https://salha.fr/"
+      },
+      "about": {
+        "@type": "Thing",
+        "name": "Coran",
+        "description": "Le Saint Coran est le livre sacré de l'Islam"
+      }
+    }
+    </script>
 
 </head>
 <body>
 
 <header class="nav-glass">
     <div class="container py-3 d-flex align-items-center justify-content-between">
-        <a th:href="@{/}" class="brand-badge">
+        <a th:href="@{/}" class="brand-badge" aria-label="Al-Nour Palace - Accueil">
             <span class="brand-dot"></span><span>☪ Al-Nour Palace</span>
         </a>
 
-        <div class="d-flex gap-2 align-items-center">
-            <a th:href="@{/hadith}" class="btn-premium"><i class="bi bi-chat-left-text"></i> Hadith</a>
-            <button id="btnTheme" class="btn-premium" type="button"><i id="themeIcon" class="bi bi-moon-stars-fill"></i></button>
-        </div>
+        <nav class="d-flex gap-2 align-items-center" aria-label="Navigation principale">
+            <a th:href="@{/hadith}" class="btn-premium" aria-label="Consulter les Hadiths authentiques"><i class="bi bi-chat-left-text"></i> Hadith</a>
+            <button id="btnTheme" class="btn-premium" type="button" aria-label="Changer le thème"><i id="themeIcon" class="bi bi-moon-stars-fill"></i></button>
+        </nav>
     </div>
 </header>
 

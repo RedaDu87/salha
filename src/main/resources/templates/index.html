@@ -3,11 +3,53 @@
 <head>
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width,initial-scale=1"/>
-    <title>Al-Nour Palace — Le Sanctuaire #1 du Savoir Islamique</title>
+    <meta name="description" content="Al-Nour Palace - Découvrez le Saint Coran et les Hadiths authentiques en ligne. Plateforme #1 de savoir islamique en français avec lecture arabe, traduction française et translittération. Interface premium pour une expérience de lecture exceptionnelle."/>
+    <meta name="keywords" content="Coran en ligne, Coran français, Hadiths authentiques, Islam, lecture Coran, Saint Coran, Hadiths, traduction Coran français, savoir islamique, Al-Nour Palace"/>
+    <meta name="author" content="Al-Nour Palace"/>
+    <meta name="robots" content="index, follow"/>
+    <link rel="canonical" th:href="@{/}"/>
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website"/>
+    <meta property="og:url" content="https://salha.fr/"/>
+    <meta property="og:title" content="Al-Nour Palace — Le Sanctuaire #1 du Savoir Islamique"/>
+    <meta property="og:description" content="Découvrez le Saint Coran et les Hadiths authentiques en ligne avec une interface premium. Lecture arabe, traduction française et translittération."/>
+    <meta property="og:locale" content="fr_FR"/>
+    <meta property="og:site_name" content="Al-Nour Palace"/>
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image"/>
+    <meta property="twitter:url" content="https://salha.fr/"/>
+    <meta property="twitter:title" content="Al-Nour Palace — Le Sanctuaire #1 du Savoir Islamique"/>
+    <meta property="twitter:description" content="Découvrez le Saint Coran et les Hadiths authentiques en ligne avec une interface premium. Lecture arabe, traduction française et translittération."/>
+    
+    <title>Al-Nour Palace — Le Sanctuaire #1 du Savoir Islamique | Coran et Hadiths en Français</title>
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
     <link th:href="@{/static/css/app.css}" rel="stylesheet">
+    
+    <!-- Structured Data / JSON-LD -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "Al-Nour Palace",
+      "url": "https://salha.fr/",
+      "description": "Plateforme de savoir islamique proposant le Saint Coran et les Hadiths authentiques en français avec lecture arabe et translittération",
+      "inLanguage": "fr-FR",
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": "https://salha.fr/coran?q={search_term_string}",
+        "query-input": "required name=search_term_string"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "Al-Nour Palace",
+        "url": "https://salha.fr/"
+      }
+    }
+    </script>
 </head>
 <body>
 
@@ -19,10 +61,10 @@
         </a>
 
         <div class="d-flex gap-2 align-items-center">
-            <a th:href="@{/coran}" class="btn-premium"><i class="bi bi-book"></i> Coran</a>
-            <a th:href="@{/hadith}" class="btn-premium"><i class="bi bi-chat-left-text"></i> Hadith</a>
+            <a th:href="@{/coran}" class="btn-premium" aria-label="Lire le Saint Coran"><i class="bi bi-book"></i> Coran</a>
+            <a th:href="@{/hadith}" class="btn-premium" aria-label="Consulter les Hadiths authentiques"><i class="bi bi-chat-left-text"></i> Hadith</a>
 
-            <button id="btnTheme" class="btn-premium" type="button" aria-label="Thème">
+            <button id="btnTheme" class="btn-premium" type="button" aria-label="Changer le thème">
                 <i id="themeIcon" class="bi bi-moon-stars-fill"></i>
             </button>
         </div>
@@ -33,11 +75,12 @@
     <section class="hero">
         <div class="row align-items-center g-4">
             <div class="col-lg-7">
-                <h1 class="h-title">Une expérience de lecture digne d’un produit #1.</h1>
+                <h1 class="h-title">Découvrez le Saint Coran et les Hadiths Authentiques en Ligne</h1>
                 <p class="h-sub">
-                    Découvrez la magnificence d'un palais oriental dédié au Saint Coran et aux Hadiths authentiques.
-                    Design somptueux inspiré des merveilles architecturales du monde musulman, avec une technologie moderne au service de la foi.
-                    Interface dorée premium, lecture fluide comme la soie, typographie arabe raffinée et navigation majestueuse.
+                    Explorez la magnificence du Saint Coran et des Hadiths authentiques avec Al-Nour Palace, votre sanctuaire numérique du savoir islamique. 
+                    Interface premium inspirée des merveilles architecturales du monde musulman, avec lecture arabe, traduction française complète et translittération. 
+                    Une expérience de lecture exceptionnelle pour approfondir votre connaissance de l'Islam.
+                </p>
 
                 <div class="kpi-row">
                     <div class="kpi"><i class="bi bi-trophy-fill"></i> <b>#1 du Marché</b> <span>Excellence inégalée</span></div>
