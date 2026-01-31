@@ -1154,3 +1154,22 @@ a:focus-visible,
 [data-theme="light"] .ts-control .ts-input{
     color: #000 !important;
 }
+
+.ayah-card {
+    transition: all 0.35s ease;
+}
+
+.ayah-card.ayah-active {
+    background: linear-gradient(
+            135deg,
+            rgba(218,165,32,0.15),
+            rgba(255,215,0,0.08)
+    );
+    border-left: 4px solid gold;
+    box-shadow: 0 10px 28px rgba(0,0,0,0.25);
+    transform: translateY(-2px);
+}
+
+.ayah-card.ayah-active .badge-pill {
+    background: rgba(255,215,0,0.2);
+}

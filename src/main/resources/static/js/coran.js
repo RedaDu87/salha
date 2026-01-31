@@ -210,6 +210,10 @@
         if (window.speechSynthesis) {
             window.speechSynthesis.cancel();
         }
+        document
+            .querySelectorAll(".ayah-card.ayah-active")
+            .forEach(el => el.classList.remove("ayah-active"));
+
     }
 
     function playArabicAt(i, single = false) {
@@ -232,6 +236,7 @@
             }
         };
         scrollToAya(a.n);
+        setActiveAya(a.n);
         audio.play().catch(() => {});
     }
 
@@ -254,6 +259,7 @@
                 }
             };
             scrollToAya(a.n);
+            setActiveAya(a.n);
             audio.play().catch(() => {});
             return;
         }
@@ -289,43 +295,81 @@
         window.speechSynthesis.speak(u);
     }
 
-    function playArFrAt(i) {
+    async function playArFrAt(i) {
+        if (stopped) return;
+
         const a = ayas[i];
+        if (!a?.audioAr) {
+            alert("Audio arabe indisponible.");
+            stopAll();
+            return;
+        }
 
-        // 1) Ar
-        if (a?.audioAr) {
-            audio = new Audio(a.audioAr);
-            audio.onended = () => {
-                if (stopped) return;
+        scrollToAya(a.n);
+        setActiveAya(a.n);
 
-                // 2) Fr (audio leclerc si dispo, sinon TTS)
-                playFrenchAt(i, true);
+        try {
+            // 1️⃣ Arabe (obligatoire)
+            await playAudioPromise(a.audioAr);
 
-                // ensuite on continue en arfr (quand le FR finit)
-                const checkEnd = () => {
-                    // soit audio FR en cours, soit speechSynthesis en cours
-                    const audioPlaying = audio && !audio.paused && audio.currentTime > 0;
-                    const ttsSpeaking = window.speechSynthesis && window.speechSynthesis.speaking;
+            if (stopped) return;
 
-                    if (audioPlaying || ttsSpeaking) {
-                        setTimeout(checkEnd, 150);
-                        return;
-                    }
+            // 2️⃣ Français (audio Leclerc OU TTS)
+            if (a.audioFr) {
+                await playAudioPromise(a.audioFr);
+            } else if (a.frText) {
+                await playTtsPromise(a.frText);
+            }
 
-                    idx++;
-                    if (idx < ayas.length) playArFrAt(idx);
-                    else stopAll();
-                };
-                setTimeout(checkEnd, 150);
-            };
+            if (stopped) return;
 
-            scrollToAya(a.n);
-            audio.play().catch(() => {});
-        } else {
-            alert("Audio arabe indisponible -> mode Ar/Fr impossible.");
+            // 3️⃣ Verset suivant
+            if (i + 1 < ayas.length) {
+                idx = i + 1;
+                playArFrAt(idx);
+            } else {
+                stopAll();
+            }
+
+        } catch (e) {
+            console.error(e);
             stopAll();
         }
     }
+
+    function playAudioPromise(src) {
+        return new Promise((resolve, reject) => {
+            const a = new Audio(src);
+            a.onended = resolve;
+            a.onerror = reject;
+            a.play().catch(reject);
+        });
+    }
+
+    function playTtsPromise(text) {
+        return new Promise((resolve, reject) => {
+            if (!window.speechSynthesis) return reject();
+            const u = new SpeechSynthesisUtterance(text);
+            u.lang = "fr-FR";
+            u.onend = resolve;
+            u.onerror = reject;
+            window.speechSynthesis.cancel();
+            window.speechSynthesis.speak(u);
+        });
+    }
+
+    function setActiveAya(n) {
+        document
+            .querySelectorAll(".ayah-card.ayah-active")
+            .forEach(el => el.classList.remove("ayah-active"));
+
+        const el = document.getElementById(`aya-${n}`);
+        if (el) {
+            el.classList.add("ayah-active");
+            el.scrollIntoView({ behavior: "smooth", block: "center" });
+        }
+    }
+
 
     // UI handlers
     $select.addEventListener("change", async (e) => {
