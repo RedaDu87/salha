@@ -35,13 +35,13 @@ jobs:
         run: mvn clean package -DskipTests
 
       - name: 🐳 Build Docker image for backend
-        run: docker build -t ${{ secrets.DOCKER_USERNAME }}/transcription-app:latest .
+        run: docker build -t ${{ secrets.DOCKER_USERNAME }}/salha-app:latest .
 
       - name: 🔐 Login to Docker Hub
         run: echo "${{ secrets.DOCKER_PASSWORD }}" | docker login -u "${{ secrets.DOCKER_USERNAME }}" --password-stdin
 
       - name: 📤 Push Docker image
-        run: docker push ${{ secrets.DOCKER_USERNAME }}/transcription-app:latest
+        run: docker push ${{ secrets.DOCKER_USERNAME }}/salha-app:latest
 
 
   deploy:
@@ -66,16 +66,16 @@ jobs:
             sudo docker login -u "${{ secrets.DOCKER_USERNAME }}" -p "${{ secrets.DOCKER_PASSWORD }}"
 
             echo "📂 Navigating to project directory..."
-            cd /home/${{ secrets.SSH_USER }}/Projects/trancription
+            cd /home/${{ secrets.SSH_USER }}/Projects/salha
 
             echo "📦 Pulling latest code..."
             git pull --rebase origin main
 
             echo "🐳 Pulling latest image from Docker Hub..."
-            sudo docker pull ${{ secrets.DOCKER_USERNAME }}/transcription-app:latest
+            sudo docker pull ${{ secrets.DOCKER_USERNAME }}/salha-app:latest
 
             echo "🚀 Deploying stack to Docker Swarm..."
-            sudo docker stack deploy -c docker-compose.yml transcription_app_stack
+            sudo docker stack deploy -c docker-compose.yml salha_app_stack
 
             echo "✅ Deployment completed successfully!"
           EOF

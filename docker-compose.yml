@@ -3,11 +3,7 @@ version: '3.9'
 services:
 
   app:
-    image: anikondu87/transcription-app:latest
-    secrets:
-      - openai_api_key
-    environment:
-      - OPENAI_API_KEY_FILE=/run/secrets/openai_api_key
+    image: anikondu87/salha-app:latest
     networks:
       - traefik-net
     deploy:
@@ -16,13 +12,9 @@ services:
         condition: any
       labels:
         - "traefik.enable=true"
-        - "traefik.http.routers.transcription.rule=Host(`transcription.hamsterdeal.ch`)"
-        - "traefik.http.routers.transcription.entrypoints=websecure"
-        - "traefik.http.services.transcription.loadbalancer.server.port=8080"
+        - "traefik.http.routers.salha.rule=Host(`coran-hadith.ch`)"
+        - "traefik.http.routers.salha.entrypoints=websecure"
+        - "traefik.http.services.salha.loadbalancer.server.port=8080"
 networks:
   traefik-net:
-    external: true
-
-secrets:
-  openai_api_key:
     external: true
