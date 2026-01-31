@@ -17,7 +17,7 @@
     /* Gold & Emerald Theme - Premium Oriental Colors */
     --brand: #DAA520;
     --brand2:#15B097;
-    --gold: #FFD700;
+    --gold: #bb9f09;
     --emerald:#50C878;
     --royal-blue:#003366;
     --warn:#FFA500;
@@ -66,6 +66,7 @@ body{
             radial-gradient(1200px 900px at 110% 10%, rgba(21,176,151,.15), transparent 60%),
             radial-gradient(800px 600px at 50% 50%, rgba(255,215,0,.08), transparent 70%),
             linear-gradient(180deg, var(--bg), var(--bg2));
+    background-attachment: fixed;
     color: var(--text);
     overflow-x:hidden;
     position: relative;
@@ -1122,3 +1123,34 @@ a:focus-visible,
 }
 
 
+/* =========================
+   Selected item (value shown in control)
+   ========================= */
+
+/* Dark mode (default): selected text = white */
+.ts-control .item,
+.ts-control .item.active,
+.ts-wrapper.single .ts-control .item,
+.ts-wrapper.multi .ts-control .item{
+    color: #fff !important;
+}
+
+/* Also force the input caret/text inside the control in dark mode */
+.ts-control input,
+.ts-control .ts-input{
+    color: #fff !important;
+}
+
+/* Light mode: selected text = black */
+[data-theme="light"] .ts-control .item,
+[data-theme="light"] .ts-control .item.active,
+[data-theme="light"] .ts-wrapper.single .ts-control .item,
+[data-theme="light"] .ts-wrapper.multi .ts-control .item{
+    color: #000 !important;
+}
+
+/* Light mode: input/caret text */
+[data-theme="light"] .ts-control input,
+[data-theme="light"] .ts-control .ts-input{
+    color: #000 !important;
+}
